@@ -6,7 +6,7 @@ import Fruit from './Fruit/Fruit'
 class App extends Component 
 {
   state = {
-    fruits: [{}]
+    fruits: []
   };
   insertIntoTable=()=>{
     let val = this.refs.textbox.value;
@@ -50,6 +50,7 @@ class App extends Component
       this.setState({fruits:fruits});
     } 
   }
+  
 
   render() {
     return (
@@ -57,10 +58,10 @@ class App extends Component
         <p>gfkjskjhk</p>
         <input ref="textbox" id="h" onKeyPress={this.handleKeyPress} type="text"/>
         <button onClick={this.insertIntoTable}>Submit</button>
-    
-        {this.state.fruits.map((person,index) => {
+        {        
+         this.state.fruits.map((person,index) => {
          return <Fruit
-          name={person.name} 
+         name={person.name} 
           price={person.price}
           c={() => this.deletePersonHandler(index)}
         />
