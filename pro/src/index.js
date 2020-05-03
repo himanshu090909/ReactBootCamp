@@ -15,7 +15,7 @@ const song = {
     featuring: 'Biggie Smalls'
    };
 
-   let string_literal = `${song.name} --${song.artist} \n(${song.featuring})`;
+   let string_literal = `"<div class ="song">\n<p>\n${song.name} --${song.artist} \n(${song.featuring})\n</p>\n</div>"`;
    console.log('ques3')
    console.log(string_literal);
 
@@ -36,7 +36,7 @@ const user =
     phoneNo: 9999999999
 }
 
-let {Address:{Line1,Line2,State,Pin,Country,City}}=user;
+let {Line1,Line2,State,Pin,Country,City}=user.Address;
 console.log('ques 4');
 console.log(Line1,Line2,State,Pin,Country,City);
 
@@ -74,8 +74,15 @@ function getAll(string)
   return results;
 }
 
+let map = new Map();
 console.log('ques 6');
-console.log(getAll("abc"));
+let a = getAll("abc");
+for(let i =0;i<a.length;i++)
+{
+  map.set(i,a[i]);
+}
+console.log(map);
+
 
 //Ques 7 Write a program to implement inheritance upto 3 classes.The Class must  public variables and static functions.
 
@@ -100,7 +107,7 @@ class Father extends Grandfather
 
     static firstStaticFunction() 
     {
-        return "in ${this.name} father";
+        return "in father";
     }
 }
 class Son extends Father
@@ -130,10 +137,14 @@ class MyClass
     {
         return `name is ${name}`;
     }
+    static static_function1(age)
+    {
+        return `age is ${age}`;
+    }
 }
 console.log('ques 8');
 console.log(MyClass.static_function("himanshu"));
-
+console.log(MyClass.static_function1(23));
 
 //Ques 9 Import a module containing the constants and method for calculating area of circle, rectangle, cylinder.
 
@@ -158,8 +169,8 @@ for(let elements of sets1)
 
 console.log('ques 11');
 const arr = [1,[2,3],[4,[5,6]]];
-const flattenedArray = arr.flat(Infinity);
-console.log(flattenedArray);
+const flattenedArray = arr=>arr.flat(Infinity);
+console.log(flattenedArray(arr));
 
 
 //Ques 12 Implement a singly linked list in es6 and implement addFirst() addLast(), length(), getFirst(), getLast(). (without using array)
@@ -191,11 +202,18 @@ import {Stack} from './ques14'
 
 console.log('ques 14');
 let stack = new Stack();
+console.log('pushed 5');
 stack.push(5);
+console.log('pushed 7');
 stack.push(7);
+console.log('pushed 9');
+stack.push(9);
 stack.peek();
+console.log('elements in stack');
 stack.printStack();
+console.log('pop operation performed');
 stack.pop();
+console.log('elements in stack');
 stack.printStack();
 
 
