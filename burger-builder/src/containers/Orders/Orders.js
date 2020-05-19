@@ -1,40 +1,44 @@
-import React, { Component } from 'react'
+import React, { useEffect } from 'react'
 import Order from '../../components/Order/Order';
 import axios from '../../axiosOrders';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index'
 import {connect} from 'react-redux';
 import Spinner from '../../components/Ui/Spinner/Spinner';
-class Orders extends Component {
-    
+const Orders = props=> {
     
 
-    componentDidMount()
-    {
-        this.props.onFetchOrders(this.props.token,this.props.userId);
-    //    axios.get('/orders.json')
-    //    .then(res=>{
-    //        const fetchedOrders=[];
-    //        for(let key in res.data){
-    //          fetchedOrders.push({
-    //              ...res.data[key],
-    //              id:key
-    //             });
-    //        }
-    //      this.setState({loading:false,orders:fetchedOrders});
-    //    })
-    //    .catch(err=>{
-    //     this.setState({loading:false});
+    const {onFetchOrders,token,userId} = props;
+    useEffect(()=>{
+    onFetchOrders(token,userId);       
+    },[onFetchOrders,token,userId])
+    
+
+    // componentDidMount()
+    // {
+    //     this.props.onFetchOrders(this.props.token,this.props.userId);
+    // //    axios.get('/orders.json')
+    // //    .then(res=>{
+    // //        const fetchedOrders=[];
+    // //        for(let key in res.data){
+    // //          fetchedOrders.push({
+    // //              ...res.data[key],
+    // //              id:key
+    // //             });
+    // //        }
+    // //      this.setState({loading:false,orders:fetchedOrders});
+    // //    })
+    // //    .catch(err=>{
+    // //     this.setState({loading:false});
            
-    //    });
-    }
+    // //    });
+    // }
 
-    render() {
-        let orders = <Spinner/>;
-        if(!this.props.loading)
+       let orders = <Spinner/>;
+        if(!props.loading)
         {
             orders = 
-                 this.props.orders.map(order=>(
+                 props.orders.map(order=>(
                 <Order 
                 key={order.id}
                 ingredients={order.ingredients}
@@ -47,7 +51,7 @@ class Orders extends Component {
             </div>
         )
     }
-}
+
 
 const mapStateToProps = state =>{
 

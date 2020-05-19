@@ -1,6 +1,5 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axiosOrders';
-import { act } from 'react-dom/test-utils';
 export const purchaseBurgerSuccess=(id,orderData)=>{
     return{
         type:actionTypes.PURCHASE_BURGER_SUCCESS,

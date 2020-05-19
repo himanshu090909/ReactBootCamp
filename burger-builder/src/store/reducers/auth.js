@@ -1,6 +1,6 @@
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../../shared/utility';
-import { act } from '@testing-library/react';
+
 const initialState={
     token:null,
     userId:null,

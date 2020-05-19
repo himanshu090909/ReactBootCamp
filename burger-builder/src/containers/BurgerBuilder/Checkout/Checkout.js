@@ -1,11 +1,10 @@
-import React, { Component } from 'react'
+import React from 'react'
 import CheckoutSummary from '../../../components/Order/CheckoutSummary/CheckoutSummary';
 import { Route, Redirect } from 'react-router-dom';
 import ContactData from './ContactData/ContactData';
 import {connect} from 'react-redux';
-import * as actions from '../../../store/actions/index';
 
-class Checkout extends Component {
+const Checkout = props =>{
     // state={
     //     ingredients:null,
     //     price: 0
@@ -33,36 +32,35 @@ class Checkout extends Component {
     // }
 
 
-    checkoutCancelledHandler=()=>{
-        this.props.history.goBack();
+    const checkoutCancelledHandler=()=>{
+        props.history.goBack();
     }
-    checkoutContinued=()=>{
-    this.props.history.replace('/checkout/contact-data');
+    const checkoutContinued=()=>{
+    props.history.replace('/checkout/contact-data');
     }
 
-    render() {
         let summary = <Redirect to="/"/>        
-        if(this.props.ings){
-            console.log('purchase',this.props.purchase)
-            const purchasedRedirect = this.props.purchased ? <Redirect to="/"/>:null
+        if(props.ings){
+            console.log('purchase',props.purchase)
+            const purchasedRedirect = props.purchased ? <Redirect to="/"/>:null
             summary = (
                 <div>
                     {purchasedRedirect}
-            <CheckoutSummary ingredients={this.props.ings}
-            checkoutCancelled={this.checkoutCancelledHandler}
-            checkoutContinued={this.checkoutContinued}
+            <CheckoutSummary ingredients={props.ings}
+            checkoutCancelled={checkoutCancelledHandler}
+            checkoutContinued={checkoutContinued}
             />)
              <Route 
-                path={this.props.match.path+'/contact-data'} 
+                path={props.match.path+'/contact-data'} 
                 component={ContactData}/>
             </div>
             )
         }
         return summary;
-                {/* //render={(props)=>(<ContactData ingredients={this.state.ingredients} price={this.state.totalPrice} {...props}/>)}/> */}
+             
             
     }
-}
+
 
 const mapStateToProps=state=>{
     return{
