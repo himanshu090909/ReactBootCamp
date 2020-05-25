@@ -158,7 +158,7 @@ export const BurgerBuilder = props=> {
        
        
 
-        let burger = error?<p>can ot be loaded</p>:<Spinner/>
+        let burger = error?<p>can not be loaded</p>:<Spinner/>
         if(ings)
         {
          burger = (

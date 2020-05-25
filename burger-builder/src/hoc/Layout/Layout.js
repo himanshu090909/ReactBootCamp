@@ -18,7 +18,7 @@ const Layout = props=> {
    }
   
         return(
-<Aux>
+      <Aux>
         <Toolbar 
         isAuth={props.isAuthenticated}
         drawerToggleClicked={sidedrawerToggleClicked}/>
